@@ -1,0 +1,8 @@
+target/
+.idea/
+spark-binlog.iml
+release.sh
+build
+logs
+dependency-reduced-pom.xml
+sql-code-intelligence.iml
