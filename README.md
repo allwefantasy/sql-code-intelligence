@@ -5,6 +5,7 @@ SQL Code Intelligence 是一个代码补全后端引擎。既可以作为MLSQL�
 ## 当前状态
 【积极开发中，还未发布稳定版本】
 
+
 ## 目标
 【SQL Code Intelligence】目标分成两个，第一个是标准SQL补全：
 
@@ -21,6 +22,8 @@ SQL Code Intelligence 是一个代码补全后端引擎。既可以作为MLSQL�
 对于表和字段补，函数补全，相比其他一些SQL代码提示工具，该插件可根据当前已有的信息精确推断。
 
 ## 效果展示
+
+![](http://docs.mlsql.tech/upload_images/sql-code.gif)
 
 ### 标准的SQL语法提示
 
