@@ -23,7 +23,7 @@ SQL Code Intelligence 是一个代码补全后端引擎。既可以作为MLSQL�
 
 ## 效果展示
 
-![](http://docs.mlsql.tech/upload_images/sql-code.gif)
+[![](http://docs.mlsql.tech/upload_images/sql-code.gif)](https://www.bilibili.com/video/BV1xk4y1z7tV)
 
 ### 标准的SQL语法提示
 
