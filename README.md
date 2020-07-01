@@ -22,7 +22,7 @@ SQL Code Intelligence 是一个代码补全后端引擎。既可以作为MLSQL�
 对于表和字段补，函数补全，相比其他一些SQL代码提示工具，该插件可根据当前已有的信息精确推断。
 
 ## 效果展示
-
+【点击下面动图可看到标准SQL补全视频】
 [![](http://docs.mlsql.tech/upload_images/sql-code.gif)](https://www.bilibili.com/video/BV1xk4y1z7tV)
 
 ### 标准的SQL语法提示
