@@ -111,6 +111,18 @@ java -cp .:sql-code-intelligence-0.1.0.jar  tech.mlsql.autosuggest.app.Standalon
 ```
 application.yml 可以参考mlsql-autosuggest/config的示例。默认端口是9004.
 
+### 编辑器接入 （只要三分钟）
+
+写一个http请求类：
+
+![](http://docs.mlsql.tech/upload_images/WX20200508-115001.png)
+
+在编辑器设置autocompleter回调：
+
+![](http://docs.mlsql.tech/upload_images/WechatIMG1001.jpeg)
+
+Done。 这里我使用的是reactjs, 编辑器是aceditor.
+
 ### Schema信息
 
 【SQL Code Intelligence】 需要基础表的schema信息，目前用户有三种可选方式：
