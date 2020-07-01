@@ -1,0 +1,1 @@
+java -cp .:sql-code-intelligence-0.1.0.jar tech.mlsql.autosuggest.app.Standalone
