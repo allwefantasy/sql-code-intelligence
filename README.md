@@ -6,6 +6,40 @@ SQL Code Intelligence 是一个代码补全后端引擎。既可以作为MLSQL�
 【积极开发中，还未发布稳定版本】
 
 
+## 发行方式
+
+### maven 依赖
+
+```xml
+<dependency>
+    <groupId>tech.mlsql</groupId>
+    <artifactId>sql-code-intelligence</artifactId>
+    <version>0.1.0</version>
+</dependency>
+```
+
+使用该依赖，用户可以很好的将功能嵌入到自己的web应用中，比如使用spring之类的web框架。
+
+### 预编译包
+
+
+下载地址：[sql-code-intelligence](http://download.mlsql.tech/sql-code-intelligence/).
+
+下载后 `tar xvf  sql-code-intelligence-0.1.0.tar` 解压,执行如下指令即可运行：
+
+```
+./start.sh
+```
+
+用户也可以直接使用Java命令启动：
+
+```
+java -cp .:sql-code-intelligence-0.1.0.jar  tech.mlsql.autosuggest.app.Standalone  -config ./config/application.yml
+```
+application.yml 可以参考mlsql-autosuggest/config的示例。默认端口是9004.
+
+
+
 ## 目标
 【SQL Code Intelligence】目标分成两个，第一个是标准SQL补全：
 
