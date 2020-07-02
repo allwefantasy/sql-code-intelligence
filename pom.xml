@@ -51,9 +51,10 @@
         <guava.version>16.0</guava.version>
         <httpclient.version>4.5.3</httpclient.version>
         <common-utils-version>0.3.5</common-utils-version>
+        <pegdown.version>1.6.0</pegdown.version>
 
         <scope>provided</scope>
-        <mlsql.version>1.6.0-SNAPSHOT</mlsql.version>
+        <mlsql.version>1.6.0</mlsql.version>
     </properties>
     <dependencies>
         <dependency>
@@ -97,6 +98,13 @@
             <groupId>tech.mlsql</groupId>
             <artifactId>streamingpro-common-${spark.bigversion}_${scala.binary.version}</artifactId>
             <version>${mlsql.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.pegdown</groupId>
+            <artifactId>pegdown</artifactId>
+            <version>${pegdown.version}</version>
+            <scope>test</scope>
         </dependency>
 
         <dependency>
