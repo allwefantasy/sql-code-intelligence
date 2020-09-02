@@ -3,7 +3,7 @@ package tech.mlsql.autosuggest.statement
 import org.antlr.v4.runtime.Token
 import org.apache.spark.sql.catalyst.parser.SqlBaseLexer
 import streaming.dsl.parser.DSLSQLLexer
-import tech.mlsql.autosuggest.dsl.{Food, TokenMatcher}
+import tech.mlsql.autosuggest.dsl.{Food, TokenMatcher, TokenTypeWrapper}
 import tech.mlsql.autosuggest.meta.{MetaTable, MetaTableColumn, MetaTableKey}
 import tech.mlsql.autosuggest.{AutoSuggestContext, SpecialTableConst, TokenPos}
 
@@ -201,7 +201,12 @@ class FromSuggester(_selectSuggester: SelectSuggester) extends ProjectSuggester(
   }
 
   override def suggest(): List[SuggestItem] = {
-    val allTables = _selectSuggester.context.metaProvider.list(Map()).map { item =>
+
+    val tokenPrefix = LexerUtils.tableTokenPrefix(tokens, tokenPos)
+    val owner = AutoSuggestContext.context().reqParams.getOrElse("owner", "")
+    val extraParam = Map("searchPrefix" -> tokenPrefix, "owner" -> owner)
+
+    val allTables = _selectSuggester.context.metaProvider.list(extraParam).map { item =>
       val prefix = (item.key.prefix, item.key.db) match {
         case (Some(prefix), Some(db)) => prefix
         case (Some(prefix), None) => prefix

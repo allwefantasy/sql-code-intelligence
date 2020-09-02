@@ -35,6 +35,14 @@ object LexerUtils {
     } else candidates
   }
 
+  def tableTokenPrefix(tokens: List[Token], tokenPos: TokenPos): String = {
+    var temp = tokens(tokenPos.pos).getText.substring(0, tokenPos.offsetInToken)
+    if (tokenPos.pos > 1 && tokens(tokenPos.pos - 1).getType == TokenTypeWrapper.DOT) {
+      temp = tokens(tokenPos.pos - 2).getText + "." + temp
+    }
+    temp
+  }
+
 
   /**
    *

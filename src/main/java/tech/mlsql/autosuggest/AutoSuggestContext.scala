@@ -9,11 +9,16 @@ import tech.mlsql.autosuggest.preprocess.TablePreprocessor
 import tech.mlsql.autosuggest.statement._
 import tech.mlsql.common.utils.log.Logging
 import tech.mlsql.common.utils.reflect.ClassPath
+import tech.mlsql.common.utils.serder.json.JSONTool
 
 import scala.collection.JavaConverters._
 import scala.collection.mutable.ArrayBuffer
 
 object AutoSuggestContext {
+  private[this] val autoSuggestContext: ThreadLocal[AutoSuggestContext] = new ThreadLocal[AutoSuggestContext]
+
+  def context(): AutoSuggestContext = autoSuggestContext.get
+  def setContext(ec: AutoSuggestContext): Unit = autoSuggestContext.set(ec)
 
   val memoryMetaProvider = new MemoryMetaProvider()
   var isInit = false
@@ -39,8 +44,9 @@ object AutoSuggestContext {
  */
 class AutoSuggestContext(val session: SparkSession,
                          val lexer: LexerWrapper,
-                         val rawSQLLexer: LexerWrapper) extends Logging {
+                         val rawSQLLexer: LexerWrapper, val options: Map[String, String] = Map()) extends Logging {
 
+  AutoSuggestContext.setContext(this)
   private var _debugMode = false
 
   private var _rawTokens: List[Token] = List()
@@ -64,12 +70,20 @@ class AutoSuggestContext(val session: SparkSession,
     this._debugMode = isDebug
   }
 
+  def isSchemaInferEnabled = {
+    !options.getOrElse("schemaInferUrl","").isEmpty && session != null
+  }
+
   def isInDebugMode = _debugMode
 
   def metaProvider = _metaProvider
 
   def statements = {
     _statements
+  }
+
+  def reqParams = {
+    JSONTool.parseJson[Map[String,String]](AutoSuggestContext.context().options("params"))
   }
 
   def rawTokens = _rawTokens
@@ -186,8 +200,6 @@ class AutoSuggestContext(val session: SparkSession,
   }
 
   private val firstWords = List("load", "select", "include", "register", "run", "train", "save", "set").map(SuggestItem(_, SpecialTableConst.KEY_WORD_TABLE, Map())).toList
-
-
 }
 
 class UpperCaseCharStream(wrapped: CodePointCharStream) extends CharStream {
